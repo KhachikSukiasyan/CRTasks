@@ -1,0 +1,15 @@
+        public static void FibonacciEvenSum()
+        {
+            int a = 1;
+            int b = 2;
+            int sum = b;
+            int temp = 0;
+            while (b < 4000000)
+            {
+                sum += temp;
+                temp = 2 * a + 3 * b;
+                a = temp - a - b;
+                b = temp;
+            }
+            Console.Write(sum);
+        }
