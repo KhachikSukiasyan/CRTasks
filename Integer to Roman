@@ -1,0 +1,59 @@
+static Dictionary<int, string> nums = new Dictionary<int, string>
+            {
+                {0,null},
+                {1,"{0}"},
+                {2,"{0}{0}"},
+                {3,"{0}{0}{0}"},
+                {4,"{0}{1}"},
+                {5,"{0}"},
+                {6,"{1}{0}"},
+                {7,"{1}{0}{0}"},
+                {8,"{1}{0}{0}{0}"},
+                {9,"{0}{1}"},
+            };
+static char a1 = '0', a2 = '0', a3 = '0';
+
+public static void RomanNumber(int num)
+{
+      StringBuilder strB = new StringBuilder();
+      for (int i = 0; num > 0; i++)
+      {
+           strB.Insert(0,RomanNumberHelper(num % 10, i));
+           num /= 10;
+      }
+      Console.WriteLine(strB.ToString());
+}
+
+public static string RomanNumberHelper(int currDigit,int i)
+{
+    switch (i)
+    {
+        case 0:
+            a1 = 'I';
+            a2 = 'V';
+            a3 = 'X';
+            break;
+        case 1:
+            a1 = 'X';
+            a2 = 'L';
+            a3 = 'C';
+            break;
+        case 2:
+            a1 = 'C';
+            a2 = 'D';
+            a3 = 'M';
+            break;
+        case 3:
+            a1 = 'M';
+            break;
+    }
+
+    if (currDigit <= 3)
+        return string.Format(nums[currDigit], a1);
+    if (currDigit <= 8)
+        return string.Format(nums[currDigit], a1, a2);
+    if (currDigit == 9)
+        return string.Format(nums[currDigit], a1, a3);
+
+    return "";
+}
