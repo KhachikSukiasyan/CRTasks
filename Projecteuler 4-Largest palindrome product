@@ -1,0 +1,50 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+void polindrom3digit();
+bool print3DigitDividersIfExists(int n);
+
+int main()
+{
+	polindrom3digit();
+}
+
+void polindrom3digit()
+{
+    int arr[900];
+	int D = 999;
+	int d = 999;
+	for (int i = 0; i < 900; i++)
+	{
+		arr[i] = D * 1000 + d;
+		D -= 1;
+		d = (D % 10) * 100 + (D/ 10 % 10)* 10 + D/ 100;
+	}
+
+	sort(arr, arr + 900, greater<int>());
+
+	for (int i = 0; i < 900; i++)
+	{
+		if (print3DigitDividersIfExists(arr[i]))
+			break;
+	}
+
+	
+}
+bool print3DigitDividersIfExists(int n)
+{
+	int k;
+	for (int i = 100; i < 1000; i++)
+	{
+		if (n % i == 0 && i / 100 != 0)
+		{
+			k = (n / i) / 100;
+			if (k < 9 && k >= 0)
+			{
+				printf("%d = %d * %d", n, i, n / i);
+				return true;
+			}
+		}
+	}
+	return false;
+}
