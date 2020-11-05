@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 void polindrom3digit();
 bool print3DigitDividersIfExists(int n);
@@ -20,17 +19,14 @@ void polindrom3digit()
 		D -= 1;
 		d = (D % 10) * 100 + (D/ 10 % 10)* 10 + D/ 100;
 	}
-
-	sort(arr, arr + 900, greater<int>());
-
+	
 	for (int i = 0; i < 900; i++)
 	{
 		if (print3DigitDividersIfExists(arr[i]))
 			break;
 	}
-
-	
 }
+
 bool print3DigitDividersIfExists(int n)
 {
 	int k;
